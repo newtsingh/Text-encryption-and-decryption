@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encryptor and Decryptor</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <h1>Encryptor and Decryptor</h1>
+  <label for="inputText">Input text:</label>
+  <input type="text" id="inputText" name="inputText">
+  <br>
+  <label for="passphrase">Passphrase:</label>
+  <input type="text" id="passphrase" name="passphrase">
+  <br>
+  <button onclick="encryptAndDecrypt()">Encrypt and Decrypt</button>
+  <h2>Output:</h2>
+  <pre id="output"></pre>
+  <script>
+    function encryptAndDecrypt() {
+      const inputText = document.getElementById('inputText').value;
+      const passphrase = document.getElementById('passphrase').value;
+
+      const encryptedText = CryptoJS.AES.encrypt(inputText, passphrase).toString();
+      const decryptedText = CryptoJS.AES.decrypt(encryptedText, passphrase).toString(CryptoJS.enc.Utf8);
+
+      document.getElementById('output').textContent = `Input text: ${inputText}\nEncrypted text: ${encryptedText}\nDecrypted text: ${decryptedText}`;
+    }
+  </script>
+</body>
+</html>
